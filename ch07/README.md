@@ -74,9 +74,24 @@ global.cs 예제를 보자
 
 DeepAndShallow.cs를 참고하자 
 
+### this 키워드
 
+바로 직전 예제를 보면 DeepCopy메소드에서 this 키워드를 사용했었다. 이게 뭐냐하면 객체가 자신을 지칭하는 키워드 이다. 
 
+객체 외부에서는 객체의 필드나 메소드에 접근할 때 객체의 이름(변수 또는 식별자)를 사용한다면 객체 내부에서는 자신의 필드나 메소드에 접근할 때 this 키워드를 사용한다.
 
+에를 들어 클래스에 Name이라는 필드가 있고 SetName 메소드가 있는데 매개변수가 Name 이라고 하면 문제가 생긴다. 이때 this키워드를 사용하면 문제를 해결 할 수 있다. 
 
+this.Name은 클래스의 필드를 가르키고 Name은 매개변수를 말한다. 
+~~~
+class Employee
+{
+  private string Name;
+  public void SetName(string Name)
+  {
+    this.Name = Name;
+  }
+}
+~~~
 
-
+이런 형태가 되겠다.
