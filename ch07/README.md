@@ -225,4 +225,31 @@ readonly 키워드를 이용해 선언할 수 있다.
 
 예제를 보면 이해가 바로 될 것이다. [예제13](13_ReadOnly.cs)
 
+### 중첩 클래스 
+중첩 클래스는 말 그대로 클래스 내부에 선언 된 클래스를 말한다. 객체를 생성하는거나 객체의 메소드를 호출하는 방법도 보통의 클래스와 다르지 않는다.
+
+자신이 소속된 클래스의 멤버에 자유롭게 접근할 수 있다. private 멤버에도 접근할 수 있다. 
+~~~
+class OuterClass
+{
+ private int OuterMember;
+ class NestedClass
+ {
+  public void DoSomething()
+  {
+   OuterClass outer = new OuterClass();
+   outer.OuterMember = 10;
+  }
+ }
+}
+~~~
+이런 식이다. 그럼 왜 쓰는 걸까?
+
+* 클래스 외부에 공개하고 싶지 않은 형식을 만들고자 할 때 
+* 현재 클래스의 일부분처럼 표현할 수 있는 클래스를 만들고자 할 때 
+
+중첩 클래스는 은닉성을 무너뜨리지만 더욱 유연하게 표현력을 가져다준다. 
+
+예제를 보자 [예제14](14_NestedClass.cs)
+
 
