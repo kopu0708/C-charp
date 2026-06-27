@@ -46,5 +46,21 @@
 
 예제를 알아보자 [예제4](04_MultInterface.cs)
 
+그럼 여러 클래스로부터 구현을 물려받는건 곧 죽어도 안되겠네요? 
+
+그건 아니다 포함(Containment)라는 기법도 있다. 이 기법은 클래스 안에 물려받고 싶은 기능을 가진 클래스들을 필드로 선언해 넣는 것이다.
+
+그럼 메소드를 만들고 구현부에 필드를 가져와 메소드를 호출 하면 되겠죠? 
+
+~~~
+MyVehicle()
+{
+  Car car = new Car();
+  Plane plane = new Plane();
+  public void Fly() {plane.Ride();}
+  public void Run() {car.Ride();}
+}
+~~~
+이렇게 말이다.  [예제4_2](04_04_MultInterface2.cs) 
 
 
