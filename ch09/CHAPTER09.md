@@ -5,7 +5,7 @@
 
 private는 그냥 접근할 수 없고 메소드를 추가해서 필드에 접근할 수 있게 하고 인스턴스를 할당하고 메소드를 호출해서 값을 쓰거나 가져올거다.
 
-~~~
+```c#
 private int age;
 
 public void SetAge(int value) {
@@ -18,7 +18,7 @@ public int GetAge() {
 }
 
 // 사용 시: obj.SetAge(20); / Console.WriteLine(obj.GetAge());
-~~~
+```
 
 이렇게 말이다. 전혀 문제 있는 코드가 아니다. 은닉성을 지키며 필드를 읽고 쓰고 있다. 만약 Java를 쓴다면 이게 정석이다.
 
