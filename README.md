@@ -210,53 +210,6 @@ string street = user?.UserAddress?.Street ?? "No Address";
 
 ---
 
-## 객체지향 프로그래밍
-
-### 인터페이스의 기본 구현 메서드
-
-레거시 인터페이스에 메서드를 추가할 때, 기존 파생 클래스에 컴파일 에러를 내지 않으려면 **기본 구현**을 제공한다.
-
-```csharp
-interface ICharacter
-{
-    void Move(); // 모든 클래스가 반드시 구현
-
-    void Fly()  // 기본 구현 메서드 — 선택적 오버라이드
-    {
-        Console.WriteLine("이 캐릭터는 날 수 없습니다.");
-    }
-}
-```
-
-> ⚠️ 기본 구현 메서드는 **인터페이스 참조(업캐스팅)로만 호출 가능**. 클래스 타입 변수로는 접근 불가.
-
-### 추상 클래스
-
-클래스와 인터페이스의 중간. 구현을 가질 수 있지만 **인스턴스화는 불가능**하다.
-
-```csharp
-abstract class Animal
-{
-    public string Name;
-    public Animal(string name) { Name = name; }
-
-    public abstract void Sound(); // 파생 클래스에서 반드시 오버라이드
-
-    public void Sleep()           // 기본 구현 제공
-    {
-        Console.WriteLine($"{Name} 잠들었습니다.");
-    }
-}
-```
-
-| | 인터페이스 | 추상 클래스 |
-|--|-----------|------------|
-| 필드 | ❌ | ✅ |
-| 생성자 | ❌ | ✅ |
-| 다중 상속 | ✅ | ❌ |
-| 기본 접근 제한자 | `public` | `private` |
-| 인스턴스화 | ❌ | ❌ |
-
 #### 연산자 우선순위 ####
 이제 모든 연산자를 알아봤다 참고로 a = a + b 이런 식은 a += b 이렇게 줄여 쓸 수 있음 다른 것도 가능 해보셈
 
