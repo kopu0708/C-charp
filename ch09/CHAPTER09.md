@@ -120,4 +120,4 @@ public string Name
 
 매개변수가 있는 생성자는 어떤 필드를 생성자 안에서 초기화할지 미리 고민했었지만 그럴 필요가 없다. 
 
-또 하나 배웠으니 써먹어 봐야지 예제로 넘어가자 [예제03](PropertyConstructor.cs) 
+또 하나 배웠으니 써먹어 봐야지 예제로 넘어가자 [예제03](03_PropertyConstructor.cs) 
