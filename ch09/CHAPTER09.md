@@ -121,3 +121,37 @@ public string Name
 매개변수가 있는 생성자는 어떤 필드를 생성자 안에서 초기화할지 미리 고민했었지만 그럴 필요가 없다. 
 
 또 하나 배웠으니 써먹어 봐야지 예제로 넘어가자 [예제03](03_PropertyConstructor.cs) 
+
+앞서 썻던 예제를 한번더 수정했다. 점점더 간결하고 읽기 쉽게 예제가 바뀌는 걸 볼 수 있다.
+
+### 초기화 전용 자동 구현 프로퍼티 
+의도치 않게 데이터가 오염되는 일은 종종 있다. 그래서 여러 장치가 있다. readonly 필드, readonly 구조체, 튜플 등이 있다. 하지만 프로퍼티는 읽기 전용으로 선언하는  방법이 조금 불편하다.
+
+생성자를 통해 필드를 초기화하고 그 필드에 접근하는 프로퍼티는 get 접근자만 갖도록 해야한다. 
+```c#
+class Transaction
+{
+    public Transaction(string _from, string __to, int _amount)
+    {
+        from = _from; to = _to; amount = _amount;
+    }
+    string from;
+    string to;
+    string amount;
+
+    public string From {get{return from;}}
+    public string To   {get{return to;}}
+    public int    Amount {get{return amount:}}
+}
+```
+이렇게 말이다. 근데 아까 get만 써주면 읽기 전용이 된다면서요? 
+
+맞다 맞는데 왜 이게 따로 있냐하면은, get은 오직 클래스(생성자) 내부에서만 값을 할당할 수 있다. new Character {CreateTime = ...} 과 같이 식으로 값을 넣는 것이 불가능하다.
+
+클래스 밖에서는 생성할 떄조차 값을 건들릴 수 없기 때문이다.
+
+하지만 init을 쓰면 set과 같이 외부에서 프로퍼티를 변경할 수 있다. 하지만 객체 초기화할 때만 프로퍼티 변경이 가능하다. 
+
+public string Name {get; init;} 이렇게 프로퍼티를 선언하면 초기화 전용 자동 구현 프로퍼티가 된다. 이제 해당 프로퍼티는 생성자가 없어도 외부에서 값을 받아 초기화하고 값이 변경되지 않는 읽기 전용 프로퍼티가 된다.
+
+맙소사 이로서 내 코드가 더 짧아 질 수가 있다. 만약 이름과 직업을 한번 정하면 바꿀수 없는 설계의 게임이라면만 말이다. [예제04](04_Init.cs) 
