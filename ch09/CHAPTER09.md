@@ -131,13 +131,13 @@ public string Name
 ```c#
 class Transaction
 {
-    public Transaction(string _from, string __to, int _amount)
+    public Transaction(string _from, string _to, int _amount)
     {
         from = _from; to = _to; amount = _amount;
     }
     string from;
     string to;
-    string amount;
+    int amount;
 
     public string From {get{return from;}}
     public string To   {get{return to;}}
@@ -274,5 +274,5 @@ var myInstance = new {Name = "박상현", Age = "17"} 이런 식으로 선언한
 
 그럼 무명 형식은요? 클래스 형식이다. 즉 참조 형식이라는 말이다. 그리고 이 무명 형식의 프로퍼티에 할당된 값은 변경불가능하다. 읽기만 할 수 있다는 이야기다.
 
-나중에 언젠가 학습할 LINQ와 함께 사용하면 아주 좋다고 한다.
+나중에 언젠가 학습할 LINQ와 함께 사용하면 아주 좋다고 한다. 이번에는 책에 나오는 예제를 그대로 써야겠다. [예제08](08_AnonymousType.cs)
 
