@@ -283,8 +283,8 @@ var myInstance = new {Name = "박상현", Age = "17"} 이런 식으로 선언한
 interface 인터페이스_이름
 {
     {
-       public 형식 _프로퍼티_이름1 {get; set;}
-       public 형식 _프로퍼티_이름2{get; set;}
+       public 형식 프로퍼티_이름1 {get; set;}
+       public 형식 프로퍼티_이름2 {get; set;}
         //....
     }
 }
