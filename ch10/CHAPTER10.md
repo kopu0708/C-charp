@@ -353,8 +353,22 @@ yield는 메서드가 데이터를 한번에 반환하지 않고 하나씩 순�
 
 [예제11](11_Yield.cs)
 
+IEnumerable을 명시적으로 상속하지 않아도 GetEnumerator()만 있으면 foreach가 동작한다. 이를 덕 타이핑이라고 한다. 단 실무에서는 명시적으로 상속받는 게 좋다.
+
 IEnumerable 상속 → GetEnumerator() 구현 의무
+
 IEnumerator는 GetEnumerator()가 반환해야 하는 형식
+
 yield 를 쓰면 IEnumerator 구현을 컴파일러가 대신 해줌
+
+이런 흐름이다. 그럼 이번에는 IEnumerator가 뭔지 알아봐야겠다.
+
+bool MoveNext(), void Reset(), Object Current{get;} 이렇게 메소드 및 프로퍼티 목록을 가지는 인터페이스이다. 각각 뭐냐면
+
+bool MoveNext()는 다음 요소로 이동한다. 컬렉션의 끝을 지난 경우에는 false, 이동이 성공한 경우에는 true를 반환한다. 
+
+void Reset() 은 컬렉션의 첫 번째 위치의 '앞'으로 이동한다. MoveNext()를 호출한 다음에 이루어진다.
+
+Object Current{get;}은 현재 요소를 반환한다. 
 
 
