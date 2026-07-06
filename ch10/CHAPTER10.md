@@ -371,4 +371,6 @@ void Reset() 은 컬렉션의 첫 번째 위치의 '앞'으로 이동한다. Mov
 
 Object Current{get;}은 현재 요소를 반환한다. 
 
+앞의 예제는 yield문의 도움을 받아서 IEnumerator를 상속하는 클래스 구현을 피했었따. 이번에는 직접 모두 구현해보겠다. 
 
+[예제12](12_Enumerable.cs)
