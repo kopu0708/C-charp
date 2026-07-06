@@ -328,3 +328,4 @@ class Program
  }
 }
 ```
+이제 예제를 만들어 보자 [예제10](10_Inventory.cs)
