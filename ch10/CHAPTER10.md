@@ -319,12 +319,12 @@ class Program
             array[index] = value;
         }
     }
-}
-static void Main()
-{
-    Program obj = new Program();
-    obj[0] = 10;
-    obj[5] = 60;  // 범위 초과 → Array Resized : 6 출력 후 저장
-    Console.WriteLine(obj[5]);  // 60
+ static void Main()
+ {
+     Program obj = new Program();
+     obj[0] = 10;
+     obj[5] = 60;  // 범위 초과 → Array Resized : 6 출력 후 저장
+     Console.WriteLine(obj[5]);  // 60
+ }
 }
 ```
