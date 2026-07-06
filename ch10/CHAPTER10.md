@@ -373,4 +373,4 @@ Object Current{get;}은 현재 요소를 반환한다.
 
 앞의 예제는 yield문의 도움을 받아서 IEnumerator를 상속하는 클래스 구현을 피했었따. 이번에는 직접 모두 구현해보겠다. 
 
-[예제12](12_Enumerable.cs)
+[예제12](12_Enumerable.cs), [예제13](13_Enumerable.cs)
