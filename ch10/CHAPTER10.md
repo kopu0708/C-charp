@@ -353,4 +353,8 @@ yield는 메서드가 데이터를 한번에 반환하지 않고 하나씩 순�
 
 [예제11](11_Yield.cs)
 
+IEnumerable 상속 → GetEnumerator() 구현 의무
+IEnumerator는 GetEnumerator()가 반환해야 하는 형식
+yield 를 쓰면 IEnumerator 구현을 컴파일러가 대신 해줌
+
 
