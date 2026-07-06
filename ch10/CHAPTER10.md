@@ -271,4 +271,60 @@ Stack과 Queue는 컬렉션 초기자를 이용할 수 없다. 이 두 컬렉션
    // 똑같은거니깐 편한걸로 ㄱㄱ
 ```
 ### 인덱서
-인덱서는 인덱스를 이용해서 객체 내의 데이터에 접근하게 해주는 프로퍼티라고 생각하면 된다. 
+인덱서는 인덱스를 이용해서 객체 내의 데이터에 접근하게 해주는 프로퍼티라고 생각하면 된다. 객체를 배열처럼 사용할 수 있게 해준다.
+```c#
+class 이름
+{
+    한정자 인덱서_형식 this[형식 index] //index말고 다른 적당한 이름 써도 됨
+   {
+        get
+        {
+            //index를 이용하여 내부 데이터 반환
+        }
+
+        set
+        {
+            //index를 이용하여 내부 데이터 저장
+        }
+   }
+}
+```
+생긴것도 프로퍼티랑 똑같지 않는가 다만 다른 점은 프로퍼티는 이름을 통해 접근하게 해준다면 인덱서는 인덱스를 통해 객체 내 데이터에 접근하게 해준다. 
+
+내부적으로도 똑같이 동작한다. 그럼 인덱스를 넘어나게 값이 들어오면 어떻게 하느냐? 아래의 예제를 보자 
+```c#
+class Program
+{
+    private int[] array;
+
+    public Program()
+    {
+        array = new int[3];
+    }
+
+    public int this[int index]
+    {
+        get
+        {
+            return array[index];
+        }
+
+        set
+        {
+            if(index >= array.Length)  // 인덱스가 배열의 크기를 벗어나면 인덱스에 맞춰 배열의 크기를 조정한다. 
+            {
+                Array.Resize<int>(ref array, index + 1);
+                Console.WriteLine("Array Resized : {0}", array.Length);
+            }
+            array[index] = value;
+        }
+    }
+}
+static void Main()
+{
+    Program obj = new Program();
+    obj[0] = 10;
+    obj[5] = 60;  // 범위 초과 → Array Resized : 6 출력 후 저장
+    Console.WriteLine(obj[5]);  // 60
+}
+```
