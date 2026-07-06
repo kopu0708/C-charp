@@ -245,7 +245,7 @@ int[] arr = {123, 456, 789};
 
 ArrayList list = new ArrayList(arr); //123, 456, 789
 ArrayList list2 = new ArrayList() {11, 22, 33}; // ArrayList는 배열의 도움 없이 직접 컬렉션 초기자를 이용해 초기화할 수 있다, 
-Stack stack = new Stack(arr); // 789, 456, 123 제일 마지막에 들어간 요소가 최상위 요소가 된다. 스택은 
+Stack stack = new Stack(arr); // 789, 456, 123 스택은 제일 마지막에 들어간 요소가 최상위 요소가 된다. 
 Queue queue = new Queue(arr); // 123, 456, 789
 ```
 Stack과 Queue는 컬렉션 초기자를 이용할 수 없다. 이 두 컬렉션은 IEnumerable 라는 인터페이스를 상속하지만 Add() 메소드를 구현하지 않았기 때문이다.
@@ -270,3 +270,5 @@ Stack과 Queue는 컬렉션 초기자를 이용할 수 없다. 이 두 컬렉션
    };
    // 똑같은거니깐 편한걸로 ㄱㄱ
 ```
+### 인덱서
+인덱서는 인덱스를 이용해서 객체 내의 데이터에 접근하게 해주는 프로퍼티라고 생각하면 된다. 
