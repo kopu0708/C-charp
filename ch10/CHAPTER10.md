@@ -239,3 +239,15 @@ Console.WriteLine(ht["tweet"]);
 또한 키 데이터로 자료를 찾기때문에 탐색 속도가 거의 소요되지 않는다. (이를 해싱이라고 하는데 이는 알고리즘 이므로 따로 공부가 필요하다.)
 
 ### 컬렉션을 초기화하는 방법 
+우리가 선언하는 방법은 익히고 메소드도 몇개 익혔는데 뭔가 뺴 먹었다. 그렇다 초기화하는 방법이다.
+```c#
+int[] arr = {123, 456, 789};
+
+ArrayList list = new ArrayList(arr); //123, 456, 789
+ArrayList list2 = new ArrayList() {11, 22, 33}; // ArrayList는 배열의 도움 없이 직접 컬렉션 초기자를 이용해 초기화할 수 있다, 
+Stack stack = new Stack(arr); // 789, 456, 123 제일 마지막에 들어간 요소가 최상위 요소가 된다. 스택은 
+Queue queue = new Queue(arr); // 123, 456, 789
+```
+Stack과 Queue는 컬렉션 초기자를 이용할 수 없다. 이 두 컬렉션은 IEnumerable 라는 인터페이스를 상속하지만 Add() 메소드를 구현하지 않았기 때문이다.
+
+[예제09](09_InitialLizing.cs) 
