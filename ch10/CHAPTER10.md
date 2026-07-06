@@ -251,3 +251,22 @@ Queue queue = new Queue(arr); // 123, 456, 789
 Stack과 Queue는 컬렉션 초기자를 이용할 수 없다. 이 두 컬렉션은 IEnumerable 라는 인터페이스를 상속하지만 Add() 메소드를 구현하지 않았기 때문이다.
 
 [예제09](09_InitialLizing.cs) 
+
+근데 우리가 뺴 먹은 친구가 있지 않는가? Hashtable말이다. 이건 초기화 어떻게 하냐?
+```c#
+   Hashtable ht = new Hashtable()
+   {
+       ["하나"] = 1, //;가 아니라 ,를 이용해 항복을 구분한다.
+       ["둘"] = 2,
+       ["셋"] = 3
+   };
+
+   //또는 이거
+   Hashtable ht2 = new Hashtable()
+   {
+       {"하나", 1 },
+       {"둘", 2 },
+       {"셋", 3 }
+   };
+   // 똑같은거니깐 편한걸로 ㄱㄱ
+```
