@@ -1,0 +1,64 @@
+﻿using System;
+
+class Myclass<T>
+{
+    private T[] array;
+    
+    public Myclass()
+    {
+        array = new T[3];
+    }
+
+    public T this[int index]
+    {
+        get { return array[index]; }
+
+        set 
+        { 
+            if(index >= array.Length)
+            {
+                Array.Resize<T>(ref array, index + 1);
+                Console.WriteLine($"Array Resized : {array.Length}");
+            }
+
+            array[index] = value;
+        }
+    }
+
+    public int Length
+    {
+        get { return array.Length; }
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Myclass<string> str_list = new Myclass<string>();
+        str_list[0] = "abc";
+        str_list[1] = "def";
+        str_list[2] = "ghi";
+        str_list[3] = "jkl";
+        str_list[4] = "mno";
+
+        for(int i = 0; i<str_list.Length; i++)
+        {
+            Console.WriteLine(str_list[i]);
+        }
+
+        Console.WriteLine();
+
+        Myclass<int> int_list = new Myclass<int>(); //기능은 같지만 자료형은 다른 객체
+        int_list[0] = 0;
+        int_list[1] = 1;
+        int_list[2] = 2;
+        int_list[3] = 3;
+        int_list[4] = 4;
+
+        for(int i = 0; i<int_list.Length; i++)
+        {
+            Console.WriteLine(int_list[i]);
+        }
+    }
+}
