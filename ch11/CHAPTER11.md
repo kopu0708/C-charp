@@ -55,3 +55,8 @@ class 클래스_이름 <형식_매개변수>
 Array_Geric<int> intArr = new Array_Generic<int>();
 ```
 예제를 보자 [예제02](02_GenericClass.cs)
+
+### 형식 매개변수 제약시키기 
+T는 모든 데이터 형식을 대신할 수 있었다. 종종 특정 조건을 갖춘 형식에만 대응하는 형식 매개변수가 필요할 때도 있다.
+
+
