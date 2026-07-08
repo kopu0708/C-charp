@@ -54,3 +54,4 @@ class 클래스_이름 <형식_매개변수>
 ```C#
 Array_Geric<int> intArr = new Array_Generic<int>();
 ```
+예제를 보자 [예제02](02_GenericClass.cs)
