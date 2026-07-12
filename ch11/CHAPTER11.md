@@ -57,6 +57,46 @@ Array_Geric<int> intArr = new Array_Generic<int>();
 예제를 보자 [예제02](02_GenericClass.cs)
 
 ### 형식 매개변수 제약시키기 
-T는 모든 데이터 형식을 대신할 수 있었다. 종종 특정 조건을 갖춘 형식에만 대응하는 형식 매개변수가 필요할 때도 있다.
+T는 모든 데이터 형식을 대신할 수 있었다. 종종 특정 조건을 갖춘 형식에만 대응하는 형식 매개변수가 필요할 때도 있다. 예를 숫자의 크기를 비교해주는 클래스를 만들었다 하자 
 
+```C#
+class MyList<T>
+{
+    public T Max(T a, T b)
+    {
+        return a > b ? a : b; // 오류가 난다 T가 >비교를 지원하는지 모르기 때문에 
+    }
+}
+```
+다음과 같이 말이다. float,double,int와 같은 형식들은 문제가 없지만 그 외의 형들은 지원하지 않기 때문이다. 이때 필요한게 제약조건이다. 그 방법은 where 키워드 이다. 
+```C#
+class 클래스_이름<T> where T : 제약조건
+```
+다음은 제약조건 목록이다. 
+| 제약 | 의미 |
+|------|------|
+| `where T : struct` | T는 값 형식만 |
+| `where T : class` | T는 참조 형식만 |
+| `where T : new()` | T는 매개변수 없는 생성자를 가져야 함 |
+| `where T : 클래스이름` | T는 해당 클래스를 상속받아야 함 |
+| `where T : 인터페이스이름` | T는 해당 인터페이스를 구현해야 함 |
+| `where T : U`| T는 또 다른 형식 매개변수 U로부터 상속받은 클래스여야 함|
 
+그럼 하나 씩 예시를 보자 
+```C#
+// T는 반드시 IComparable을 구현한 형식만 가능
+class MyList<T> where T : IComparable
+{
+    public T Max(T a, T b)
+    {
+        if (a.CompareTo(b) > 0)  // IComparable이 보장되니까 사용 가능
+            return a;
+        return b;
+    }
+}
+
+// int, string 등 IComparable을 구현한 형식은 OK
+MyList<int>    list1 = new MyList<int>();
+MyList<string> list2 = new MyList<string>();
+```
+struct,class와 클래스 이름 인터페이스 이름은 이 사례와 거의 같기 때문에 패스하자 그럼 남은 것은 new와 U이다. 
