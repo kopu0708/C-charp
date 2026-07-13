@@ -176,6 +176,7 @@ List<T>, Queue<T>, Stack<T>, Dictionary<Tkey, TValue> 모두 각각 10장에서 
 |------|------|
 | `IEnumerator GetEnumerator()` | IEnumerator 형식의 객체를 반환(IEnumerable로부터 상속받은 메소드 |
 | `IEnumerator<T> GetEnumerator()` | IEnumerator<T> 형식의 객체를 반환 |
+
 다음과 같이 같은 메소드를 두 개나 갖고 있다. 이름은 같지만 반환 형식이 다르다. IEnumerator를 반환하는 버전은 일반화된 인터페이스가 IEnumerator 인터페이스로부터 상속받은 것이다.
 
 IEnumerator<T>를 반환하는 버전은 새로 선언된 메소드이다. 아무튼 우린 이 둘을 모두 구현해야한다. 왜요? 상속받았으니깐 
