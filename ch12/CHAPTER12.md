@@ -124,6 +124,7 @@ int value = array[index >= 0 && index < 3 ? index : throw new IndexOutOfRangeExc
 // index가 4라서 범위를 벗어나므로 예외 발생
 ```
 throw 문 — if 블록 안에서 독립적으로 사용
+
 throw 식 — ?? 나 조건 연산자(?:) 안에서 값 대신 사용 (C# 7.0+)
 
 
