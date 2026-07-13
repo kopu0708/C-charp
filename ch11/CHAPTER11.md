@@ -141,4 +141,4 @@ class MyClass<T> where T : class, IComparable, new()
 
 [예제03](03_Constraint_type.cs)
 
-
+인벤토리를 구현했을때를 예를 들었다. 인벤토리에는 아이템 클래스를 상속받은 객체만이 들어올 수 있게 하였고 특정 로직은 특정 조건에서만 실행될 수 있게 할 수 있게 되었다.
