@@ -156,7 +156,9 @@ object 형식을 기반으로 하기 때문에 가능했던 것이였다. 하지
 
 이를 해결하기 위해 제네릭이 도입되면서 각자 업그레이드 버전이 생겼었다고 설명했었다. 
 
-List<T>, Queue<T>, Stack<T>, Dictionary<Tkey, TValue> 모두 각각 10장에서 봤던 애들의 일반화 버전이다. 기능과 동작 방식은 동일하기에 자세한 예제는 생략한다. 
+List<T>, Queue<T>, Stack<T>, Dictionary<Tkey, TValue> 모두 각각 10장에서 봤던 애들의 일반화 버전이다. 기능과 동작 방식은 동일하기에 예제는 그냥 한번에 4개 보고 넘어가자
+
+[ListEx](04_ListEx.cs), [QueueEx](05_QueueEx.cs), [StackEx](06_StackEx.cs), [DictionaryEx](07_DictionaryEx.cs)
 
 또한 앞서 예제에서 만든 Inventory<T>가 List<T>와 같은 원리로 작동한다. 만약 실무였다면 그냥 List<T> 쓰면 될 듯
 
