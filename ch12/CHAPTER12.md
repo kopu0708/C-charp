@@ -120,7 +120,12 @@ int b = a ?? throw new ArgumentNullException(); // a는 null이므로, b에 a를
 int[] array = new[] {1,2,3};
 int index = 4;
 int value = array[index >= 0 && index < 3 ? index : throw new IndexOutOfRangeException()];
+// index가 0~2 범위면 array[index], 아니면 throw
+// index가 4라서 범위를 벗어나므로 예외 발생
 ```
+throw 문 — if 블록 안에서 독립적으로 사용
+throw 식 — ?? 나 조건 연산자(?:) 안에서 값 대신 사용 (C# 7.0+)
+
 
 
 
