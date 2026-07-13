@@ -102,6 +102,25 @@ public int Hp
     }
 }
 ```
-만약 저렇게 던져진 예외는 메소드를 호출하는 try~catch 문에서 받아낸다.  예제를 보자 [예제02](02_Throw.cs)
+만약 저렇게 던져진 예외는 메소드를 호출하는 try~catch 문에서 받아낸다.  예제를 보자 [예제02](02_Throw.cs) 
+
+예제에서 ArgumentException을 쓰지 않고 그냥 Exception으로 던졌는데 이는 앞서 말한 모든 예외가 Exception의 자식이라 Exception타입으로 다 잡힌다는 것을 보여주기 위함이다.  
+
+throw는 보통 문으로 사용하지만 c# 7.0부터는 식으로도 사용할 수 있도록 개선되었다.
+
+```C#
+int? a = null; //nullable로 선언하고 null 넣은거
+int b = a ?? throw new ArgumentNullException(); // a는 null이므로, b에 a를 할당하지 않고 throw 식이 실행된다.
+// ?? : 왼쪽(a)이 null이 아니면 그 값을, null이면 오른쪽을 실행
+```
+참고로 ??연산자는 왼쪽 값이 null 이면 오른쪽 값을 반환한다. 
+
+조건 연산자 안에서도 사용할 수 있다.
+```C#
+int[] array = new[] {1,2,3};
+int index = 4;
+int value = array[index >= 0 && index < 3 ? index : throw new IndexOutOfRangeException()];
+```
+
 
 
