@@ -192,7 +192,7 @@ IEnumerable<T>가 IEnumerable을 상속하고 있기 때문이다. 부모 인터
 
 이렇게 IEnumerator<T>의 메소드와 프로퍼티를 보았다. Current프로퍼티가 두 가지 버전인 것을 확인 할 수 있다. 역시 두가지 모두 다 구현해야한다. 
 
-IEnumerator<T> 나 IEnumerable<T>는 형식 매개변수를 제외하면 원본과 차이점이 거의 없다. 아까 인벤토리 만든 걸 수정하는 걸로 예제를 보자 
+IEnumerator<T> 나 IEnumerable<T>는 형식 매개변수를 제외하면 원본과 차이점이 거의 없다. 아까 인벤토리 만든 걸 수정하는 걸로 예제를 보자 [예제08](08_EnumerableGeneric.cs)
 
 
 
