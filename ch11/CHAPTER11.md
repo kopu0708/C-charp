@@ -160,5 +160,40 @@ List<T>, Queue<T>, Stack<T>, Dictionary<Tkey, TValue> 모두 각각 10장에서 
 
 [ListEx](04_ListEx.cs), [QueueEx](05_QueueEx.cs), [StackEx](06_StackEx.cs), [DictionaryEx](07_DictionaryEx.cs)
 
-또한 앞서 예제에서 만든 Inventory<T>가 List<T>와 같은 원리로 작동한다. 만약 실무였다면 그냥 List<T> 쓰면 될 듯
+또한 앞서 예제에서 만든 Inventory<T>가 List<T>와 같은 원리로 작동한다. 만약 실무였다면 그냥 List<T> 쓰면 될 듯 위 컬렉션의 메서드들은 인터넷에서 찾아 공부하자
+
+### foreach는 그냥 쓸 수 없다.
+앞서 foreach를 사용할 수 있는 클래스를 만드는 법을 학습헀었다. IEnumerable 인터페이스를 상속해서 클래스를 만드는 방법말이다.
+
+일반화 클래스도 위와 같은 방식으로 인터페이스를 상속하면 일단은 foreach를 통해 순회가 가능하지만 요소를 순회할 때마다 형식 변환을 수행하는 오버헤드가 발생한다.
+
+그럼 어캐하나요?
+
+놀랍게도 IEnumerable에도 일반화 버전인 IEnumerable<T> 인터페이스가 존재한다. 이 인터페이스를 상속하면 형식 변환으로 인한 성능 저하가 없으면서도 foreach 순회가 가능하다.
+
+그럼 이것도 인터페이스니깐 구현해야하는 메소드들이 있겠네요? 확실히 사실이다 한번 보자 
+| 메소드 | 설명 |
+|------|------|
+| `IEnumerator GetEnumerator()` | IEnumerator 형식의 객체를 반환(IEnumerable로부터 상속받은 메소드 |
+| `IEnumerator<T> GetEnumerator()` | IEnumerator<T> 형식의 객체를 반환 |
+다음과 같이 같은 메소드를 두 개나 갖고 있다. 이름은 같지만 반환 형식이 다르다. IEnumerator를 반환하는 버전은 일반화된 인터페이스가 IEnumerator 인터페이스로부터 상속받은 것이다.
+
+IEnumerator<T>를 반환하는 버전은 새로 선언된 메소드이다. 아무튼 우린 이 둘을 모두 구현해야한다. 왜요? 상속받았으니깐 
+
+IEnumerable<T>가 IEnumerable을 상속하고 있기 때문이다. 부모 인터페이스의 메서드까지 모두 구현해야 하는 인터페이스 규칙 때문에 두 버전을 다 구현해야 한다.
+
+| 메소드 또는 프로퍼티 | 설명 |
+|-------|-------|
+| `boolean MoveNext()` | 다음 요소로 이동한다. 컬렉션의 끝을 지난 경우에는 false, 이동이 성공한 경우에는 true를 반환한다.|
+| `void Reset()` | 컬렉션의 첫 번째 위치의 '앞'으로 이동한다. 첫 번째 위치가 0번일 때, Reset()을 호출하면 -1번으로 이동한다. 첫 번째 위치로의 이동은 MoveNext()호출 다음이다.|
+| `Object Current{get;}` | 현재 요소를 반환한다.(IEnumerator로부터 상속받은 프로퍼티)|
+| `T Current{get;}` | 컬렉션의 현재 요소를 반환한다.|
+
+이렇게 IEnumerator<T>의 메소드와 프로퍼티를 보았다. Current프로퍼티가 두 가지 버전인 것을 확인 할 수 있다. 역시 두가지 모두 다 구현해야한다. 
+
+IEnumerator<T> 나 IEnumerable<T>는 형식 매개변수를 제외하면 원본과 차이점이 거의 없다. 아까 인벤토리 만든 걸 수정하는 걸로 예제를 보자 
+
+
+
+
 
