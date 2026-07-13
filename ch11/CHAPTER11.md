@@ -52,7 +52,7 @@ class 클래스_이름 <형식_매개변수>
 ```
 사용하는 법은 다음과 같다 
 ```C#
-Array_Geric<int> intArr = new Array_Generic<int>();
+Array_Generic<int> intArr = new Array_Generic<int>();
 ```
 예제를 보자 [예제02](02_GenericClass.cs)
 
@@ -100,3 +100,45 @@ MyList<int>    list1 = new MyList<int>();
 MyList<string> list2 = new MyList<string>();
 ```
 struct,class와 클래스 이름 인터페이스 이름은 이 사례와 거의 같기 때문에 패스하자 그럼 남은 것은 new와 U이다. 
+
+new()의 예를 보겠다.
+
+```C#
+public static T CreateInstance<T>() where T : new()
+{
+  return new T();
+}
+```
+이 코드의 메소드는 기본 생성자를 가진 어떤 클래스의 객체라도 생성해준다. 기본 생성자가 없는 클래스를 형식 매개변수에 넘기면 당연히 컴파일 에러가 난다.
+
+다음은 상위 코드에서 사용되던 형식 매개변수 U로부터 상속받는 형식으로 제약 조건을 주는 예이다.
+
+```C#
+class BaseArray<U> where U : Base
+{
+    public U[] Array { get; set; }
+    public BaseArray(int size)
+    {
+        Array = new U[size];
+    }
+
+    public void CopyArray<T>(T[] Source) where T : U
+    {
+        Source.CopyTo(Array, 0);
+    }
+}
+```
+BaseArray<U>는 Base를 상속받은 형식만 담을 수 있는 배열 클래스다. CopyArray<T>는 거기에 더해 T가 U를 상속받은 형식이어야만 복사할 수 있도록 제약을 건다. 즉 U의 자식 형식만 복사 가능하다.
+
+참고로 이러한 제약 조건은 한번에 여러개 주는 것도 가능하다.
+```c#
+class MyClass<T> where T : class, IComparable, new()
+// T는 참조 형식이면서, IComparable을 구현하고, 기본 생성자도 있어야 함
+```
+한번에 이해가 가지는 않지만 예제를 만들어보고 연습해보면서 익혀보자.  마찬가지로 게임개발의 맥락에서 생각해보면 아이템에는 여러 종류가 있다.
+
+이미 우리는 클래스와 인터페이스 프로퍼티 등으로 다형성을 구현할 수 있지만 특정 데이터 형식 일때만 로직을 실행시키고 싶을 때가 있을 수도 있다. 이를 예시로 예제를 만들어 보자
+
+[예제03](03_Constraint_type.cs)
+
+
