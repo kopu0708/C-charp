@@ -174,6 +174,35 @@ class MyException : Exception
 에외 클래스의 이름에는 끝에 Exception을 붙이는게 관례이며 예외 메세지를 넘기기 위해서는 생성자가 필수이다. 예제를 만들어 보자 
 
 [예제04](04_MyException.cs)
+### 예외 필터하기 
+C# 6.0 부터는 catch 절이 받아들일 예외 객체에 제약 사항을 명시해서 해당 조건을 만족하는 예외 개체에 대해서만 예외 처리 코드를 실행할 수 있도록 하는 예외 필터가 도입됐다.
 
+catch() 절 뒤에 when 키워드를 이용해서 제약 조건을 기술하면 된다. (when을 if라고 생각하면 이해하기 쉽다.)
+
+```c#
+using System;
+class FilterableException : Exception
+{
+    public int ErrorNo { get; set; }
+}
+
+try
+{
+    int num = GetNumber();
+
+    if (num < 0 || num > 0)
+        throw new FilterableException() { ErrorNo = num };
+    else
+        Console.WriteLine($"Output : {num}");
+}
+
+catch (FilterableException e) when (e.ErrorNo < 0)
+{
+    Console.WriteLine("Negative input is not allowed.");
+}
+```
+이 코드는 try 블록 안에서 num이 0보다 작거나 10보다 크면 예외 객체를 던진다. 이어지는 catch 블록에서 받도록 되어 있지만 when을 이용해서 ErrorNo가 0보다 작은 경우만 걸러내고 있다.
+
+그 외의 경우에는 처리되지 않은 상태 그대로 호출자에게 던져진다. 교제에 있는 예제 따라해보고 넘어가자  [예제05](05_ExceptionFiltering.cs)
 
 
