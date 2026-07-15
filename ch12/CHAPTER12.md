@@ -190,7 +190,7 @@ try
 {
     int num = GetNumber();
 
-    if (num < 0 || num > 0)
+    if (num < 0 || num > 10)
         throw new FilterableException() { ErrorNo = num };
     else
         Console.WriteLine($"Output : {num}");
@@ -204,5 +204,12 @@ catch (FilterableException e) when (e.ErrorNo < 0)
 이 코드는 try 블록 안에서 num이 0보다 작거나 10보다 크면 예외 객체를 던진다. 이어지는 catch 블록에서 받도록 되어 있지만 when을 이용해서 ErrorNo가 0보다 작은 경우만 걸러내고 있다.
 
 그 외의 경우에는 처리되지 않은 상태 그대로 호출자에게 던져진다. 교제에 있는 예제 따라해보고 넘어가자  [예제05](05_ExceptionFiltering.cs)
+### 예외 처리 다시 생각해보기 
+만약 예외 처리를 지원하지 않았다면 어떻게 해야할까? 길게 생각할 것 없이 뭐.. if else문 범벅이지 않을까? 
 
+또한 예외 처리는 정상 로직과 오류 처리 코드를 분리해줘서 우리가 쉽게 읽을 수 있게 해준다.
+
+정리하면 예외 처리는 세 가지를 해준다. 첫째, 프로그램이 죽지 않게 막아준다. 둘째, 정상 로직과 오류 처리를 분리해 읽기 쉽게 만든다. 
+
+셋째, 예외 객체에 정보를 담아 어디서 왜 문제가 생겼는지 알려준다.
 
