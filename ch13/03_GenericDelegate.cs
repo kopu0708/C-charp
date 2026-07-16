@@ -12,7 +12,7 @@ class Program
 
     static int DescendCompare<T>(T a, T b) where T : IComparable<T>
     { 
-        return b.CompareTo(b) * -1; //-1 곱하면 자신보다 큰 경우 -1 반환, 자신보다 작은 경우 1 반환
+        return a.CompareTo(b) * -1; //-1 곱하면 자신보다 큰 경우 -1 반환, 자신보다 작은 경우 1 반환
     }
 
     static void BubbleSort<T>(T[] dataSet, Compare<T> compare)
