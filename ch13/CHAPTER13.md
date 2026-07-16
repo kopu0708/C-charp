@@ -131,3 +131,40 @@ static void BubbleSort(int[] DataSet, Compare Comparer)
 ```C#
 delegate int Compare<T>(T a, T b);
 ```
+마찬가지로 delegate 키워드를 제외하면 일반화 메소드를 선언하는 방법과 같다. 대리자를 매개변수로 사용하는 메소드도 형식 매개변수를 받아들이도록 변경해야 한다.
+```C#
+static void BubbleSort<T>(T[] DataSet, Compare<T> comparer) //형식매개 변수 추가 
+{
+    int i = 0;
+    int j = 0;
+    T temp;
+    for (i = 0; i < DataSet.Length - 1; i++)
+    {
+        for (j = 0; j < DataSet.Length - (i + 1); j++)
+        {
+            if (comparer(DataSet[j], DataSet[j + 1]) > 0)
+            {
+                temp = DataSet[j + 1];
+                DataSet[j + 1] = DataSet[j];
+                DataSet[j] = temp;
+            }
+        }
+    }
+}
+```
+대리자도 참조할 메소드 구현이 없으면 쓸모가 없다. 이 대리자에 담을 메소드도 형식 매개변수를 사용하도록 변경해야 한다.
+```C#
+static int AscendCompare<T>(T a, T b) where T : IComparable<T>
+{
+    return a.CompareTo(b);
+}
+```
+코드는 짧은데 왜 갑자기 매개변수 형식인 T가 IComparable<T>를 상속받아야만 하고 CompareTo() 메소드는 뭔가?
+
+int, double 같은 수치 형식과 string은 모두 IComparable을 상속해서 CompareTo()를 구현하고 있기 때문이다. 
+
+CompareTo는 매개변수가 자신보다 크면 -1을 반환하고 같으면 0을 작으면 1을 반환하는 메소드이다. 
+
+11장에서 배웠듯이 T가 어떤 형식일지 모르기 때문에 무조건 CompareTo() 메소드를 가졌을 IComparable<T>를 상속받은 클래스만 오게 제약을 건 것이다.
+
+이번 예제는 위 예제의 일반화를 가져오겠다. [예제03](03_GenericDelegate.cs)
