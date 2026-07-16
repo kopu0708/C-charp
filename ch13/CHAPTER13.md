@@ -75,3 +75,53 @@ MyDelegate Callback = new MyDelegate(Add);
 Console.WriteLine(Callback(3, 4));  // 7
 ```
 호출자가 대리자를 호출하고 대리자는 또 메소드를 호출한다. 그리고 그 실행 및 실행 결과를 호출자에게 전달한다. [예제01](01_Delegate.cs)
+
+근데 메소드 직접 호출하는게 더 빠른데요?
+
+### 대리자는 왜, 언제 사용할까?
+프로그래밍을 하다 보면 '값'이 아닌 '코드' 자체를 매개변수에 넘기고 싶을 때가 많다. 
+
+배열을 정렬하는 메소드를 만든다고 생각해보자 오름차순으로 정렬할 것인가 아니면 내림차순? 그것도 아니면 뭔가 계산을 통해 나오는 결과순으로 정렬할 것인지 정해야한다.
+
+이 메소드 정렬을 수행할 때 사용하는 비교 루틴을 매개변수에 넣을 수 있다면 이런 고민은 메소드를 사용하는 사용자의 몫이다. 
+
+이럴 때 대리자가 사용된다. 대리자는 메소드에 대한 참조이므로, 비교 메소드를 참조할 대리자를 매개변수에 받을 수 있도록 정렬 메소드를 작성해두면 된다.
+
+한번 코드를 만들어보자 
+```C#
+delegate int Compare(int a, int b); //먼저 Compare 대리자를 선언한다.
+
+static int AscendCompare(int a, int b) //대리자가 참조할 비교 메소드를 작성한다.
+{
+    if(a>b)
+        return 1;
+    else if(a == b)
+        return 0;
+    else
+        return -1;
+}
+
+//이제 정렬을 수행하는 메소드를 작성한다. 이때 매개변수로 정렬할 배열과 비교할 메소드를 참조한 대리자를 받는다.
+static void BubbleSort(int[] DataSet, Compare Comparer)
+{
+    int i = 0;
+    int j = 0;
+    int temp = 0;
+    for(i = 0; i<DataSet.Length-1; i++)
+    {
+        for(j = 0; j < DataSet.Length - (i + 1); j++)
+        {
+            if(Comparer(DataSet[j], DataSet[J+1]) > 0) //이게 중요하다 Comparer가 어떤 메소드를 참조하고 있는가에 따라 결과가 달라지기 때문
+            {
+                temp = DataSet[j+1];
+                DataSet[j+1] = DataSet[j];
+                DataSet[j] = temp;
+            }
+        }
+    }
+}
+
+```
+대리자가 없었다면 정렬을 수행하는 메소드를 하나 더 짯어야 했지만 대리자가 참조하는 메소드에 따라 결과 달라지는 코드를 만들 수 있어 큰 수정이 필요없다.
+
+완성된 예제를 만들어보고 넘어가자 [예제02](02_callBack.cs)
