@@ -59,3 +59,19 @@ class Monster
 ```
 delegate 라는 새로운 키워드만 빼면 메소드와 형태가 똑같다. 대리자는 메소드에 대한 참조이기 때문에 자신이 참조할 메소드의 반환 형식과 매개변수를 명시해줘야 한다. 
 
+```C#
+// 1. 대리자 선언 — "이런 모양의 메서드를 담을 그릇"
+delegate int MyDelegate(int a, int b);
+
+// 2. 담을 메서드 — 반환 형식과 매개변수가 대리자와 일치해야 함
+static int Add(int a, int b) { return a + b; }
+
+// 3. 대리자의 인스턴스를 만들 때도 new 연산자가 필요하다.
+MyDelegate Callback = new MyDelegate(Add); 
+
+//MyDelegate Callback = Add; // 이렇게도 가능
+
+// 4. 대리자를 호출하면 담아둔 메서드가 실행됨
+Console.WriteLine(Callback(3, 4));  // 7
+```
+호출자가 대리자를 호출하고 대리자는 또 메소드를 호출한다. 그리고 그 실행 및 실행 결과를 호출자에게 전달한다. [예제01](01_Delegate.cs)
