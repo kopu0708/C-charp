@@ -172,4 +172,29 @@ CompareTo는 매개변수가 자신보다 크면 -1을 반환하고 같으면 0�
 ### 대리자 체인
 대리자에는 한가지 특징이 있는데 대리자 하나가 여러 개의 메소드를 동시에 참조할 수 있다는 것이다.  
 
++= 연산자를 이용하여 결합할 수 있다. 
+```C#
+    delegate void ThereIsAFire(string message);
 
+    void Call119(string message)
+    {
+        Console.WriteLine("여기 불남 주소는 {0}",message);
+    }
+
+    void ShotOut(string message)
+    {
+        Console.WriteLine("불났어요! {0}에서요.", message);
+    }
+
+    void Escape(string message)
+    {
+        Console.WriteLine("불났어요! {0}에서요. 빨리 피하세요.", message);
+    }
+```
+이렇게 선언한 메소드들을 ThereIsAFire 대리자의 인스턴스가 자신들을 동시에 참조할 수 있도록 += 연산자들을 이용해 결합한다.
+```C#
+ThereIsAFire Fire = new ThereIsAFire(Call119);
+Fire += new ThereIsAFire (ShotOut);
+Fire += new ThereIsAFire (Escape);
+```
+이렇게 
