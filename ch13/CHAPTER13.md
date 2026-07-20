@@ -197,4 +197,24 @@ ThereIsAFire Fire = new ThereIsAFire(Call119);
 Fire += new ThereIsAFire (ShotOut);
 Fire += new ThereIsAFire (Escape);
 ```
-이렇게 
+이렇게 결합해놓은 대리자는 한 번만 호출하면 자신이 참조하고 있는 모든 메소드를 호출한다.
+
+```C#
+Fire("우리 집"); // 여기 불남 주소는 우리 집 불났어요! 우리 집에서요. 불났어요! 우리집에서요. 빨리 피하세요.
+```
+여러 개의 콜백을 동시에 호출해야 할 때 유용하다. (물론 동시는 아니고 체인을 따라 차례대로 호출하는거다.) 
+
++= 연산자가 아니더라도 대리자 체인을 만들 수 있다. 몇가지 보자 
+```C#
+// + 연산자와 = 연산자 사용하기
+ThereIsAFire Fire = new ThereIsAFire (Call119)
+                  + new ThereIsAFire (Shoutout)
+                  + new ThereIsAfire (Escape);
+
+// Delegate.Combine() 메소드 사용하기
+ThereIsAFire Fire = (ThereIsAFire) Delegate.Combine(
+                            new ThereIsAFire (Call119),
+                            new ThereIsAFire (Shoutout),
+                            new ThereIsAFire (Escape));
+//참고로 += 뿐만 아니라 -=으로 체인에서 제거도 가능하다.
+```
