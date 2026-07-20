@@ -221,3 +221,4 @@ ThereIsAFire Fire = (ThereIsAFire) Delegate.Combine(
 Fire -= new ThereIsAFire(Escape);  // 대피 안내만 체인에서 제거
 Fire("우리 집");  // 이제 신고, 소리치기만 실행
 ```
++= 연산자가 제일 편하니깐 이거 쓰자 그럼 예제를 만들어보자 위 3개는 교제 있는거 그대로 썼으니깐 [예제04](04_DelegateChains.cs)
