@@ -255,5 +255,43 @@ public static void Main()
 
 특정 시간이 됐을 때 이를 알려주거나, 사죵자가 버튼을 클릭했들 때 이를 알려주는 객체 말이다. 이런 객체를 만들 때 쓰는게 이벤트이다.
 
-동작원리가 대리자와 거의 비슷한데 이벤트는 대리자를 event 한정자로 수식해서 만들기 때문이다. 
+동작원리가 대리자와 거의 비슷한데 이벤트는 대리자를 event 한정자로 수식해서 만들기 때문이다. 사용하는 절차를 알아보자
+```c#
+delegate void EventHandler(string message); // 1. 대리자를 선언한다. 클래스 밖이든 안이든 상관 ㄴ
 
+class MyNotifier
+{
+    public event EventHandler SomethingHappened; //2. 클래스 내부에서 선언한 대리자의 인스턴스를 event 한정자로 수식해서 선언한다.
+
+    public void DoSomething (int number)
+    {
+        int temp = number % 10;
+        if (temp != 0 && temp % 3 == 0 )
+        {
+            SomethingHappened(String.Format("{0} : 짝", number));
+        }
+    }
+}
+class Program
+{
+    static public void MyHandler(string message) //3. 이벤트 헨들러를 작성한다. 앞서 선언한 대리자와 일치하는 메소드면 된다.
+    {
+        Console.WriteLine(message);
+    }
+    // ...
+
+    static void Main()
+    {
+        MyNotifier notifier = new MyNotifier(); //4. 클래스의 인스턴스를 생성하고 이 객체의 이벤트에 작성한 이벤트 핸들러를 등록한다.
+        notifier.SomethingHappened += new EventHandler(MyHandler);
+
+        for(int i = 1; i < 30; i++)      
+        {
+            notifier.DoSomething(i); //5. 이벤트가 발생하면 이벤트 핸들러가 호출된다.
+        }
+    }
+}
+```
+이런 식인데 이거 왜 쓰는데요? 그냥 대리자를 사용하면 되는데 굳이 과정도 조금 더 붙는 이벤트는 뭐죠?
+
+일단 위 예시를 완성시킨 예제를 보고 넘어가서 알아보자 [예제06](06_EventTest.cs)
