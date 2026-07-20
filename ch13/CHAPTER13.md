@@ -295,3 +295,35 @@ class Program
 이런 식인데 이거 왜 쓰는데요? 그냥 대리자를 사용하면 되는데 굳이 과정도 조금 더 붙는 이벤트는 뭐죠?
 
 일단 손에 익게 하나 더 만들어보고 넘어가서 알아보자 [예제06](06_EventTest.cs)
+### 대리자와 이벤트
+이벤트는 대리자에 event 키워드로 수식해서 선언한 것에 불과하다. 왜 있을까?
+
+이벤트와 대리자의 가장 큰 차이점은 이벤트를 외부에서 직접 사용할 수 없다는 데 있다. 
+
+이벤트는 public 한정자로 선언되어 있어도 자신이 선언된 클래스 외부에서는 호출이 불가능하다. 반면에 대리자는 public 이나 internal로 수식되어 있으면 얼마든지 호출이 가능하다.
+
+```C#
+delegate void EventHandler(string message);
+
+class MyNotifier
+{
+    public event EventHandler SomethingHappened;
+
+    public void OnEvent(string message) // 외부에서 호출가능함
+    {
+        SomethingHappened?.Invoke(message); //내부에서만 발생 가능       
+    }
+    // ...
+}
+
+class MainApp
+{
+    static void Main()
+    {
+        MyNotifier notifier = new MyNotifier();
+        notifier.SomethingHappened += (msg) => Console.WriteLine(msg); //=> 이건 뭐임? 다음에 배울거임 
+        notifier.OnEvent("테스트");
+       // notifier.SomethingHappened("테스트"); // 에러가 난다 이벤트는 객체 외부에서 직접 호출이 불가
+    }
+}
+```
