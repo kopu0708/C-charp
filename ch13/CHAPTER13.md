@@ -208,13 +208,16 @@ Fire("우리 집"); // 여기 불남 주소는 우리 집 불났어요! 우리 �
 ```C#
 // + 연산자와 = 연산자 사용하기
 ThereIsAFire Fire = new ThereIsAFire (Call119)
-                  + new ThereIsAFire (Shoutout)
-                  + new ThereIsAfire (Escape);
+                  + new ThereIsAFire (Shotout)
+                  + new ThereIsAFire (Escape);
 
 // Delegate.Combine() 메소드 사용하기
 ThereIsAFire Fire = (ThereIsAFire) Delegate.Combine(
                             new ThereIsAFire (Call119),
                             new ThereIsAFire (Shoutout),
                             new ThereIsAFire (Escape));
+
 //참고로 += 뿐만 아니라 -=으로 체인에서 제거도 가능하다.
+Fire -= new ThereIsAFire(Escape);  // 대피 안내만 체인에서 제거
+Fire("우리 집");  // 이제 신고, 소리치기만 실행
 ```
