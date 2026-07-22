@@ -84,3 +84,4 @@ static void Main()
 결과를 반환하는 메소드를 참조하기 위해 만들어진 친구다. .NET에는 모두 17가지 버전의 Func 대리자가 준비되어 있다.
 ```C#
 public delegate TResult Func<out TResult>()
+public delegate TResult Func<in T, out TResult>(T arg)
