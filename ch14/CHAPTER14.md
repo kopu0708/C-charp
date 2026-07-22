@@ -85,3 +85,24 @@ static void Main()
 ```C#
 public delegate TResult Func<out TResult>()
 public delegate TResult Func<in T, out TResult>(T arg)
+public delegate TResult Func<in T1, in T2, out TResult>(T1 arg1, T2 arg2)
+public delegate TResult Func<in T1, in T2, in T3, out TResult>(T1 arg1, T2 arg2, T3 arg3)
+...
+public delegate TResult Func<in T1, in T2, in T3, ..., in T15, out TResult>(T1 arg1, T2 arg2, T3 arg3, ... T15 arg15)
+public delegate TResult Func<in T1, in T2, in T3, ..., in T15, in T16, out TResult>(T1 arg1, T2 arg2, T3 arg3, ... T15 arg15, T16 arg16)
+```
+Func 대리자의 형식 매개변수 중 가장 마지막에 있는 것이 반환 형식이다. 형식 매개변수가 하나뿐인 Func는 그 하나가 반환 형식이다.
+
+뭐 그 뒤로는 쭉쭉쭉 마지막 자료형이 반환형이다. 여기서 포인트는 Func을 사용하면 대리자 선언이 아예 사라진다는 점이다. 
+
+예시를 보자 
+```c#
+Func<int> func1 = () => 10; // 입력 매개변수는 없으며, 무조건 10 반환
+Console.WriteLine(func1()); // 10 출력
+
+Func<int,int> func2 = (x) => x*2; //입력 매개변수는 int 형식 하나, 반환 형식도 int
+Console.WriteLine(func2(3)); // 6을 출력
+```
+이런 식이다. 마지막을 제외하고 앞의 자료형의 데이터를 입력 받고 마지막의 자료형으로 반환 한다. 이렇게 이해하자 간단한 한번만 쓸 수식을 쓸때 좋을 듯 
+
+[예제03](03_FuncTest.cs) 
