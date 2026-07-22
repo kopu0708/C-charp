@@ -81,3 +81,6 @@ static void Main()
 아무튼 Func와 Action 대리자를 미리 만들어 뒀다. Func은 대리자는 결과를 반환하는 메소드를, Action 대리자는 결과를 반환하지 않는 메소드를 참조한다. 
 
 #### Func 대리자 
+결과를 반환하는 메소드를 참조하기 위해 만들어진 친구다. .NET에는 모두 17가지 버전의 Func 대리자가 준비되어 있다.
+```C#
+public delegate TResult Func<out TResult>()
