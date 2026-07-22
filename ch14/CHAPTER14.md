@@ -106,3 +106,31 @@ Console.WriteLine(func2(3)); // 6을 출력
 이런 식이다. 마지막을 제외하고 앞의 자료형의 데이터를 입력 받고 마지막의 자료형으로 반환 한다. 이렇게 이해하자 간단한 한번만 쓸 수식을 쓸때 좋을 듯 
 
 [예제03](03_FuncTest.cs) 
+#### Action 대리자
+Func 대리자와 거의 똑같지만, 차이점이라면 Action 대리자는 반환 형식이 없다는 것이다. 마찬가지로 17개 버전이 선언되어 있다.
+
+```c#
+public delegate void Action<>()
+public delegate void Action<in T>(T arg)
+public delegate void Action<in T1, in T2>(T1 arg1, T2 arg2)
+public delegate void Action<in T1, in T2, in T3>(T1 arg1, T2 arg2, T3 arg3)
+...
+public delegate  void Action<in T1, in T2, in T3, ..., in T16> (T1 arg1, T2 arg2, T3 arg3, ... , T16 arg16)
+```
+모두 입력 매개변수를 위해 선언되어 있따. Func와 달리 어떤 결과를 반환하는 것을 목적으로 하지 않고, 일련의 작업을 수행하는 것이 목적이기 때문이다.
+
+매개변수가 아무것도 없는 Action의 사용은 반환하는 결과가 없다. 아래는 그 예시다.
+```C#
+Action act1 = () => Console.WriteLine("Action()");
+act1();
+
+// 다음은 매개변수가 하나뿐인 버전, Action<T>
+int result = 0;
+Action<int> act2 = (x) => result = x * x; // 람다식 밖에서 선언한 result에 x * x의 결과를 저장한다.
+
+act2(3);
+Console.WriteLine("result : {0}", result()); // 9출력
+```
+별 차이점이 없다는 걸 알 수 있지만 이거는 결과는 필요없고 뭔가를 실행시키고 싶을때 사용한다. 출력이나 로그 남기기, 상태변경 같은거 말이다.
+
+예제를 보자 [예제04](04_ActionTest.cs)
