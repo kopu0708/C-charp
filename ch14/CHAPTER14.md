@@ -145,5 +145,51 @@ Console.WriteLine("result : {0}", result); // 9출력
 ```c#
 멤버 => 식;
 ```
-문법은 이렇다.
+문법은 이렇다. 하나씩 어떻게 변하는지 보자 
 
+메서드 
+```c#
+// 기존
+public int Add(int a, int b)
+{
+    return a + b;
+}
+
+// 식 본문 멤버
+public int Add(int a, int b) => a + b;
+```
+프로퍼티 
+```c#
+// 기존
+public string Name
+{
+    get { return _name; }
+}
+
+// 식 본문 멤버
+public string Name => _name;
+```
+인덱서
+```c#
+// 기존
+public T this[int index]
+{
+    get { return _items[index]; }
+}
+
+// 식 본문 멤버
+public T this[int index] => _items[index];
+```
+생성자
+```c#
+// 기존
+public Monster(string name)
+{
+    Name = name;
+}
+
+// 식 본문 멤버
+public Monster(string name) => Name = name;
+```
+
+예제를 만들어 보자 [예제05](05_ExpressionBoodiedMember.cs)
