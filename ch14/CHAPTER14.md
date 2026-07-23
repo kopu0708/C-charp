@@ -193,3 +193,5 @@ public Monster(string name) => Name = name;
 ```
 
 예제를 만들어 보자 [예제05](05_ExpressionBoodiedMember.cs)
+
+## 클래스 부터 람다식 까지 마치며 
